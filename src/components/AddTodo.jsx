@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
+import { AiOutlineClear } from "react-icons/ai";
 
-function AddTodo({ onNewItem }) {
+function AddTodo({ onNewItem, onClearAll }) {
   const [todoName, setTodoName] = useState("");
   const [dueDate, setDueDate] = useState("");
   const handleNameChange = (e) => {
@@ -11,6 +12,10 @@ function AddTodo({ onNewItem }) {
     setDueDate(e.target.value);
   };
   const handleAddClick = () => {
+    if (!todoName || !dueDate) {
+      alert("Please fill out both the ToDo name and due date first!");
+      return;
+    }
     onNewItem(todoName, dueDate);
     setDueDate("");
     setTodoName("");
@@ -19,7 +24,7 @@ function AddTodo({ onNewItem }) {
   return (
     <div className="container text-center">
       <div className="row kg-row">
-        <div className="col-6">
+        <div className="col-4">
           <input
             type="text"
             value={todoName}
@@ -28,15 +33,30 @@ function AddTodo({ onNewItem }) {
           />
         </div>
         <div className="col-4">
-          <input type="date" value={dueDate} onChange={handleDateChange} />
+          <input
+            type="date"
+            value={dueDate}
+            onChange={handleDateChange}
+            onFocus={(e) => e.target.showPicker()}
+          />
         </div>
         <div className="col-2">
           <button
             type="button"
             className="btn btn-success kg-btn"
             onClick={handleAddClick}
+            disabled={!todoName || !dueDate}
           >
-            Add  <IoMdAddCircle />
+            Add <IoMdAddCircle />
+          </button>
+        </div>
+        <div className="col-2">
+          <button
+            type="button"
+            className="btn btn-danger kg-btn"
+            onClick={() => onClearAll()}
+          >
+            Clear All <AiOutlineClear />
           </button>
         </div>
       </div>

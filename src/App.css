@@ -3,6 +3,8 @@
   padding: 0;
 }
 
+
+
 h1{
   font-size: 45px;
   font-weight: bolder;
@@ -25,3 +27,53 @@ input{
 .kg-btn{
   min-width: 80px;
 }
+
+.completed-task {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.3;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.dark-toggle-btn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.dark-mode {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.dark-mode input {
+  background-color: #333;
+  color: #fff;
+  border-color: #555;
+}
+body {
+  background-color: #ffffff;
+  color: #000000;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+

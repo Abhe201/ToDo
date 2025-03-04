@@ -1,7 +1,7 @@
 import React from "react";
 import ToDoItem from "./ToDoItem.jsx";
 
-function ToDoItems({ todoItems, onDeleteClick }) {
+function ToDoItems({ todoItems, onDeleteClick ,onCompleteClick}) {
   return (
     <>
       <div className="item-container">
@@ -11,7 +11,10 @@ function ToDoItems({ todoItems, onDeleteClick }) {
             id={index}
             name={item.name}
             date={item.date}
+            completed={item.completed}
             onDeleteClick={onDeleteClick}
+            onCompleteClick ={onCompleteClick}
+
           />
         ))}
       </div>
