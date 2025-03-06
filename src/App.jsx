@@ -1,10 +1,9 @@
 import "./App.css";
 import AppName from "./components/appname";
 import AddTodo from "./components/AddTodo";
-import React, { useState ,useEffect} from "react";
+import React, { useState } from "react";
 import ToDoItems from "./components/ToDoItems";
 import WelcomeMessage from "./components/WelcomeMessage";
-import { FaSun, FaMoon } from "react-icons/fa";
 
 function App() {
   const [todoItems, setTodoItems] = useState([]);
@@ -21,6 +20,7 @@ function App() {
     ];
     setTodoItems(newTodoItems);
   };
+
   const handleClearAll = () => {
     if (window.confirm("Are you sure you want to clear all tasks?")) {
       setTodoItems([]);
@@ -42,20 +42,15 @@ function App() {
     setTodoItems(newTodoItems);
   };
 
-
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
-  }, [darkMode]);
-
   return (
-    <>
-      <button onClick={handleToggleDarkMode} className="dark-toggle-btn">
-        {darkMode ? <FaSun /> : <FaMoon />}
-      </button>
+    <div className={`app-wrapper ${darkMode ? 'dark' : 'light'}`}>
+      <div
+        className={`toggle-slider ${darkMode ? 'dark' : ''}`}
+        onClick={handleToggleDarkMode}
+      >
+        <span className="sun">☀️</span>
+        <span className="moon">🌙</span>
+      </div>
       <center className="todo-container">
         <AppName />
         <AddTodo onNewItem={handleNewItem} onClearAll={handleClearAll} />
@@ -66,7 +61,7 @@ function App() {
           onCompleteClick={handleCompleteItem}
         />
       </center>
-      </>
+    </div>
   );
 }
 
